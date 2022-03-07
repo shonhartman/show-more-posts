@@ -26,20 +26,15 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
-      <div className="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
-        <h3 className="text-lg leading-6 font-medium text-gray-900">Job Postings</h3>
-        <p className="mt-1 text-sm text-gray-500">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit quam corrupti consectetur.
-        </p>
-      </div>
-        <p>
-          Show More Posts
-        </p>
-        <Posts postsToRender={postsToShow} />
-        <button onClick={handleShowMorePosts}>Load More</button>
-      </header>
+    <div className='p-20'>
+      <Posts postsToRender={postsToShow} />
+      <button
+        type="button"
+        className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        onClick={handleShowMorePosts}
+      >
+        Load More
+      </button>
     </div>
   );
 }
