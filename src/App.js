@@ -26,11 +26,13 @@ function App() {
   }
 
   return (
-    <div className='p-20'>
-      <Posts postsToRender={postsToShow} />
+    <div className="container px-5 py-8 mx-auto xl:px-24 flex flex-col items-center">
+      <div className="flex flex-wrap mb-12">
+        <Posts postsToRender={postsToShow} />
+      </div>
       <button
         type="button"
-        className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        className="w-1/3 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         onClick={handleShowMorePosts}
       >
         Load More
