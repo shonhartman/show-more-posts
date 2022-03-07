@@ -1,16 +1,22 @@
 export default function Posts({ postsToRender }) {
   return (
-    <ul id='post-list'>
-      {
         postsToRender.map((post, index) => {
           return (
-            <li key={index}>
-              <strong>{post.id}</strong>
-              &nbsp;{post.title}
-            </li>
+            <div
+              key={index}
+              className="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
+            >
+              <div className="flex-shrink-0">
+                <img className="h-10 w-10 rounded-full" src={post.imageUrl} alt="" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <span className="absolute inset-0" aria-hidden="true" />
+                <p className="text-sm font-medium text-gray-900">{post.title}</p>
+                <p className="text-sm text-gray-500 truncate">{post.body}</p>
+              </div>
+            </div>
           );
         })
-      }
-    </ul>
+      
   ); 
 }
