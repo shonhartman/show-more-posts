@@ -1,22 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import posts from './data/postsArray';
+import Posts from './data/Posts';
+import { useEffect, useState } from 'react';
+
+let arrayForHoldingPosts = [];
+const postsPerPage = 3;
 
 function App() {
+  const [postsToShow, setPostsToShow] = useState([]);
+  const [next, setNext] = useState(3);
+
+  const loopWithSlice = (start, end) => {
+    const slicedPosts = posts.slice(start, end);
+    arrayForHoldingPosts = [...arrayForHoldingPosts, ...slicedPosts];
+    setPostsToShow(arrayForHoldingPosts);
+  };
+
+  useEffect(() => {
+    loopWithSlice(0, postsPerPage);
+  }, []);
+
+  const handleShowMorePosts = () => {
+    loopWithSlice(next, next + postsPerPage);
+    setNext(next + postsPerPage);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Show More Posts
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Posts postsToRender={postsToShow} />
+        <button onClick={handleShowMorePosts}>Load More</button>
       </header>
     </div>
   );
