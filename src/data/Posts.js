@@ -1,22 +1,18 @@
 export default function Posts({ postsToRender }) {
   return (
-        postsToRender.map((post, index) => {
-          return (
-            <div
-              key={index}
-              className="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
-            >
-              <div className="flex-shrink-0">
-                <img className="h-10 w-10 rounded-full" src={post.imageUrl} alt="" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <span className="absolute inset-0" aria-hidden="true" />
-                <p className="text-sm font-medium text-gray-900">{post.title}</p>
-                <p className="text-sm text-gray-500 truncate">{post.body}</p>
+    postsToRender.map((post, index) => {
+      return (
+        <div key={index} className="relative w-full p-1 md:w-1/2 lg:w-1/3">
+          <div className="w-full h-full px-4 pb-6">
+            <div className="flex flex-col h-full mb-5 overflow-hidden shadow-xl rounded-xl">
+              <div className="flex flex-col flex-grow p-6">
+                <h1 className="mb-3 text-2xl font-medium leading-tight text-gray-900">{post.title}</h1>
+                <div clasNames="flex-grow mb-5 font-light text-gray-500">{post.body}</div>
               </div>
             </div>
-          );
-        })
-      
+          </div>
+        </div>
+      );
+    })
   ); 
 }
