@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 let arrayForHoldingPosts = [];
 const postsPerPage = 3;
 
-function App() {
+export default function App() {
   const [postsToShow, setPostsToShow] = useState([]);
   const [next, setNext] = useState(3);
 
@@ -40,5 +40,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
