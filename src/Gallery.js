@@ -1,39 +1,39 @@
 import { useState, useEffect } from "react";
-import images from "./data/imageArray";
-
-const imagesShown = 7;
+import imageArray from "./data/imageArray";
 
 export default function Gallery() {
+  // THIS WILL BE DYNAMIC BASED ON SCREEN SIZE
+  const imagesToShow = 7;
   // STATE OF THE IMAGE GALLERY
-  const [imagesToShow, setImagesToShow] = useState([]);
-  const [next, setNext] = useState(imagesShown);
-
+  const [galleryImages, setgalleryImages] = useState([]);
+  const [next, setNext] = useState(imagesToShow);
+  
   const loopWithSlice = (start, end) => {
-    const slicedArray = images.slice(start, end);
+    const slicedArray = imageArray.slice(start, end);
     // SETS IMAGES TO SHOW STATE
-    setImagesToShow(slicedArray);
+    setgalleryImages(slicedArray);
   };
 
   // SET INITIAL VALUES
   useEffect(() => {
-    loopWithSlice(0, imagesShown);
+    loopWithSlice(0, imagesToShow);
   }, []);
 
-  const handleShowMoreImages = () => {
-    // SET NEXT STATE
-    // SET START & END FOR SLICE
-    if (next > images.length) {
+  // SET START & END FOR SLICE + NEXT STATE
+  const handleShowMoreImages = (e) => {
+    e.preventDefault();
+    if (next > imageArray.length) {
       setNext(0);
-      loopWithSlice(0, imagesShown);
+      loopWithSlice(0, imagesToShow);
     } else {
-      setNext(next + imagesShown);
-      loopWithSlice(next, (next + imagesShown));
+      setNext(next + imagesToShow);
+      loopWithSlice(next, (next + imagesToShow));
     }
   };
 
   return (
     <div className="bg-slate-300 container mx-auto flex flex-col justify-center self-center my-5">
-      {imagesToShow.map((img) => {
+      {galleryImages.map((img) => {
         return (
           <div
             key={img.id}
