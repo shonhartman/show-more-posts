@@ -31,6 +31,32 @@ export default function Gallery() {
     }
   };
 
+  const title = "Share Title";
+	const text = "Share Text";
+	const url = "https://google.com";
+
+	// const canonical = document.querySelector("link[rel=canonical]");
+	// const url = document.location.href;
+	const shareDetails = { url, title, text };
+
+	const handleSharing = async () => {
+		console.log("navigator dot share", navigator.share);
+		// ONLY WORKS WITH HTTPS
+		if (navigator.share) {
+			try {
+				await navigator
+					.share(shareDetails)
+					.then(() => console.log("content shared"));
+			} catch (error) {
+				console.log(`Error: ${error}`);
+			}
+		} else {
+			// fallback code
+			// TODO : SHOW MODAL WITH MESSAGE
+			console.log("Web share is currently not supported on this browser.");
+		}
+	};
+
   return (
     <div className="bg-slate-300 container mx-auto flex flex-col justify-center self-center my-5">
       {galleryImages.map((img) => {
@@ -50,6 +76,14 @@ export default function Gallery() {
       >
         More
       </button>
+      <button
+        type="button"
+        className="bg-yellow-300 h-8 w-24 mx-auto border border-yellow-600"
+        onClick={handleSharing}
+      >
+        Share
+      </button>
+
     </div>
   );
 }
