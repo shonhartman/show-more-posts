@@ -31,17 +31,10 @@ export default function Gallery() {
     }
   };
 
-  const title = "Share Title";
-	const text = "Share Text";
-	const url = "https://google.com";
-
-	// const canonical = document.querySelector("link[rel=canonical]");
-	// const url = document.location.href;
-	const shareDetails = { url, title, text };
+	const url = document.location.href;
+	const shareDetails = { url };
 
 	const handleSharing = async () => {
-		console.log("navigator dot share", navigator.share);
-		// ONLY WORKS WITH HTTPS
 		if (navigator.share) {
 			try {
 				await navigator
@@ -52,8 +45,7 @@ export default function Gallery() {
 			}
 		} else {
 			// fallback code
-			// TODO : SHOW MODAL WITH MESSAGE
-			console.log("Web share is currently not supported on this browser.");
+			alert("Web share is currently not supported on this browser. Just use the native share button in your device.");
 		}
 	};
 
